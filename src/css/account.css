@@ -1,0 +1,212 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.bodyaccounts {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.containeraccountpage {
+  background-color: #ccc;
+  width: 80%;
+  max-width: 1000px;
+  height: 500px;
+  display: flex;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+}
+
+.profile-section {
+  background-color: #777;
+  flex: 1;
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* ----------------------- PROFILE ----------------------- */
+
+.profile-section img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: #000 solid 1px;
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.username {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  position: relative;
+}
+
+.username::after {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 2px;
+  background-color: black;
+  margin: 5px auto 0;
+}
+
+hr {
+  width: 90%;
+}
+/* ----------------------- ACHIVEMENTS ----------------------- */
+
+.achievements {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.achievementsheader {
+  display: flex;
+  justify-content: center;
+}
+
+.achievements ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.achievements li {
+  margin-bottom: 10px;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: #999;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.box {
+  background-color: #999;
+  height: 30px;
+  flex-grow: 1;
+  border-radius: 4px;
+}
+
+/* ----------------------- BADGE ----------------------- */
+
+.badges-section {
+  background-color: #bbb;
+  flex: 2;
+  margin-left: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2.badgeheader {
+  display: inline-block;
+  background-color: #d8d8d8;
+  color: black;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+  letter-spacing: 2px;
+  position: relative;
+  margin: 20px auto;
+  width: 200px;
+}
+
+h2.badgeheader::before,
+h2.badgeheader::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h2.badgeheader::before {
+  left: 10px;
+}
+
+h2.badgeheader::after {
+  right: 10px;
+}
+
+.badges-section h2 {
+  margin-bottom: 20px;
+}
+
+.badges {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 80%;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.badge {
+  width: 100%;
+  padding-top: 100%;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+}
+
+.badge::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: calc(50% - 5px);
+}
+
+.back-button {
+  position: absolute;
+  top: 90%;
+  left: 72%;
+  padding: 10px 20px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+}

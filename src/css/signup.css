@@ -1,0 +1,185 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.background_signup {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../img/background2.jpg"); 
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup_title {
+  margin-top: 10%;
+  margin-right: 50%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.signup_container {
+  width: 700px;
+  height: 800;
+  background-color: rgba(255, 255, 255, 0.92);
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Style for form heading */
+.signup_form h2 {
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Style for form inputs */
+.signup_form input {
+  color: black;
+  width: 400px;
+  height: 70px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Style for submit button */
+.signupbtn {
+  background-color: #828282;
+  font-weight: 600;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signupbtn:hover {
+  background-color: #FFD02A;
+  transition: 0.2s;
+}
+
+.signup_arrow {
+  display: inline-block;
+  font-size: 15px;
+}
+
+.login_btn {
+  font-size: 14px;
+  margin-top: 10%;
+}
+
+.login_btn a {
+  font-weight: 600;
+  color: #828282;
+}
+
+.login_btn a:hover {
+  color: black;
+}
+
+/* textbox */
+.user_txtbox, .email_txtbox, .pass_txtbox, .confirmpass_txtbox {
+  background-color: #f4f4f4;
+  border: solid 2px #f4f4f4;
+}
+
+.user_txtbox:hover, .email_txtbox:hover, .pass_txtbox:hover, .confirmpass_txtbox:hover {
+  background: linear-gradient(white, white) padding-box, 
+              linear-gradient(90deg, rgba(99, 99, 99, 0.2) 0%, 
+                              rgba(99, 99, 99, 0.2) 50%, 
+                              rgba(99, 99, 99, 0.2) 100%) no-repeat;
+  background-position: center;
+  background-size: 100% 100%, 100% 2px;
+  border: solid 2px #f3f3f3;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* MODAL CONTENT */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal_content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  max-width: 500px;
+  width: 80%;
+}
+
+.modal_description {
+  margin-top: 5%;
+}
+
+/* close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal_close {
+  background-color: #828282;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal_close:hover {
+  background-color: #505050;
+  transition: 0.2s;
+}
+
+/* FOOTER */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  color: white; 
+  text-align: center;
+  padding: 10px 0; 
+}
+
+.footer_container {
+  max-width: 1200px; /* Adjust width as needed */
+  margin: 0 auto;
+}
+
+.footer_copy {
+  font-weight: 600;
+}

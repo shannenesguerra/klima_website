@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import klimalogo from '../img/klima logo.png';
+import klimatxt from '../img/klima text.png';
+import rerend from '../img/rerend logo.png';
 import '../css/changepass.css';
 
 const ChangePassword = () => {
@@ -50,6 +53,9 @@ const ChangePassword = () => {
 
     return (
         <div className="background_changepass">
+
+            <img src={klimatxt} alt="Top Left" className="corner_img top_left" />
+
             <div className="change_pass">
                 <h2 className="change_pass_title">Change Password</h2>
                 <p className="change_pass_instruction">Please enter your email and new password.</p>
@@ -100,6 +106,10 @@ const ChangePassword = () => {
                     <p className="footer_copy">
                         &#169; KLIMA 2024 | All rights reserved.
                     </p>
+                    {/* logos */}
+                    <img src={rerend} alt="Bottom Left" className=" bottom_left" />
+                    <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
+                    
                 </div>
             </footer>
             

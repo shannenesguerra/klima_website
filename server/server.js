@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/klima')
+mongoose.connect('mongodb+srv://shannenesguerra08:A7ttH0mJ8lVd1orB@klima.lhjba.mongodb.net/klima')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
@@ -29,6 +29,12 @@ app.post('/api/signup', async (req, res) => {
   }
 
   try {
+    // Check if the username already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username is taken' });
+    }
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 

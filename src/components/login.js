@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import loading from '../img/earth.gif';
 import arrow from '../img/arrow.png';
+import klimalogo from '../img/klima logo.png';
+import klimatxt from '../img/klima text.png';
+import rerend from '../img/rerend logo.png';
 import '../css/login.css';
 
 const Login = () => {
@@ -30,7 +33,7 @@ const Login = () => {
           // Delay before redirecting to the account page
           setTimeout(() => {
             setIsLoading(false);
-            window.location.href = '/account'; // Redirect to Account page after delay
+            window.location.href = '/game'; // Redirect to Account page after delay
           }, 5000); // 5 seconds delay
         } else {
           console.error('Username not found in response.');
@@ -51,6 +54,9 @@ const Login = () => {
 
   return (
     <div className="background_login">
+
+      <img src={klimatxt} alt="Top Left" className="corner_img top_left" />
+
       {isLoading ? (
         <div className='loading_container'>
           <div className="loading_screen">
@@ -68,7 +74,7 @@ const Login = () => {
             <section className="login section" id="login">
               <div className="login_container">
                 <form className="login_form" onSubmit={handleSubmit}>
-                  <h2 className="login_title">LOGIN</h2>
+                  <h2 className="login_title">LOG IN</h2>
                   <input
                     type="text"
                     className='email_txtbox'
@@ -109,6 +115,10 @@ const Login = () => {
               <p className="footer_copy">
                 &#169; KLIMA 2024 | All rights reserved.
               </p>
+              {/* logos */}
+              <img src={rerend} alt="Bottom Left" className=" bottom_left" />
+              <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
+
             </div>
           </footer>
         </div>

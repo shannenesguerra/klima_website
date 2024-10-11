@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import klimalogo from '../img/klima logo.png';
+import klimatxt from '../img/klima text.png';
+import rerend from '../img/rerend logo.png';
 import '../css/forgotpass.css';
 
 const ForgotPassword = () => {
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('');
-    const [otp, setOtp] = useState('');
+    const [otp, setOtp] = useState(new Array(6).fill(''));
     const [otpSent, setOtpSent] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
     const handleSendOtp = async () => {
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
+        setLoading(true);
         try {
             const response = await fetch('http://localhost:5000/api/send-otp', {
                 method: 'POST',
@@ -24,40 +34,62 @@ const ForgotPassword = () => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log('OTP sent:', data.otp); // For debugging purposes
                 setOtpSent(true);
                 setStep(2);
+                setError('');
             } else {
-                console.error('Failed to send OTP:', data.message);
+                setError(data.message || 'Failed to send OTP');
             }
         } catch (error) {
-            console.error('Error:', error);
+            setError('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleChangeOtp = (element, index) => {
+        if (isNaN(element.value)) return;
+
+        const newOtp = [...otp];
+        newOtp[index] = element.value;
+        setOtp(newOtp);
+
+        // Move focus to the next input
+        if (element.nextSibling && element.value) {
+            element.nextSibling.focus();
         }
     };
 
     const handleVerifyOtp = async () => {
+        if (otp.some(digit => digit === '')) {
+            setError('Please enter a complete 6-digit OTP.');
+            return;
+        }
+        setLoading(true);
         try {
             const response = await fetch('http://localhost:5000/api/verify-otp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, otp }),
+                body: JSON.stringify({ email, otp: otp.join('') }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                console.log('OTP verified:', data.message);
                 setModalOpen(true);
+                setError('');
             } else {
-                console.error('Failed to verify OTP:', data.message);
+                setError(data.message || 'Failed to verify OTP');
+                setOtpSent(false);
             }
         } catch (error) {
-            console.error('Error verifying OTP:', error);
+            setError('An error occurred during OTP verification.');
+        } finally {
+            setLoading(false);
         }
     };
-
 
     const handleModalClose = () => {
         setModalOpen(false);
@@ -66,7 +98,11 @@ const ForgotPassword = () => {
 
     return (
         <div className="background_forgotpass">
+
+            <img src={klimatxt} alt="Top Left" className="corner_img top_left" />
+
             <div className="forgot_password">
+                {error && <p className="error_message">{error}</p>}
                 {step === 1 && (
                     <div>
                         <h2 className='forgot_title'>Forgot Password</h2>
@@ -78,22 +114,31 @@ const ForgotPassword = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button className="send_otp_btn" onClick={handleSendOtp}>Send OTP</button>
+                        <button className="send_otp_btn" onClick={handleSendOtp} disabled={loading}>
+                            {loading ? 'Sending...' : 'Send OTP'}
+                        </button>
                     </div>
                 )}
                 {step === 2 && otpSent && (
                     <div>
                         <h2 className='forgot_title'>Enter OTP</h2>
                         <p className='forgot_subtitle'>Please enter the OTP sent to your email.</p>
-                        <input
-                            type="text"
-                            className='forgotpass_otp_txtbox'
-                            placeholder="Enter OTP"
-                            maxLength="6"
-                            value={otp}
-                            onChange={(e) => setOtp(e.target.value)}
-                        />
-                        <button className="verify_otp_btn" onClick={handleVerifyOtp}>Verify OTP</button>
+                        <div className="otp_container">
+                            {otp.map((digit, index) => (
+                                <input
+                                    key={index}
+                                    type="text"
+                                    className="otp_input"
+                                    maxLength="1"
+                                    value={digit}
+                                    onChange={(e) => handleChangeOtp(e.target, index)}
+                                    onFocus={(e) => e.target.select()}
+                                />
+                            ))}
+                        </div>
+                        <button className="verify_otp_btn" onClick={handleVerifyOtp} disabled={loading}>
+                            {loading ? 'Verifying...' : 'Verify OTP'}
+                        </button>
                     </div>
                 )}
             </div>
@@ -113,9 +158,12 @@ const ForgotPassword = () => {
                     <p className="footer_copy">
                         &#169; KLIMA 2024 | All rights reserved.
                     </p>
+                    {/* logos */}
+                    <img src={rerend} alt="Bottom Left" className=" bottom_left" />
+                    <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
+
                 </div>
             </footer>
-            
         </div>
     );
 };

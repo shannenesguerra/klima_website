@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +15,7 @@ html {
 .background_signup {
   height: 100vh;
   width: 100vw;
-  background-image: url("../img/background2.jpg"); 
+  background-image: url("../img/klima\ bg.png"); 
   background-size: cover;
   background-position: center;
   display: flex;
@@ -31,9 +33,10 @@ html {
 .signup_container {
   width: 700px;
   height: 800;
-  background-color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(223, 223, 223, 0.92);
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
   text-align: center;
 }
 
@@ -109,6 +112,11 @@ html {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.error_text {
+  color: #b10000;
+  font-family: "Montserrat", sans-serif;
+}
+
 /* MODAL CONTENT */
 .modal {
   display: flex;
@@ -170,7 +178,7 @@ html {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  color: white; 
+  color: black; 
   text-align: center;
   padding: 10px 0; 
 }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import klimalogo from '../img/klima logo.png';
 import klimatxt from '../img/klima text.png';
 import rerend from '../img/rerend logo.png';
-import '../css/signup.css'; 
+import '../css/signup.css';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -14,6 +14,7 @@ const Signup = () => {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
@@ -55,10 +56,14 @@ const Signup = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Successful signup
+        // Show modal on successful signup
+        setIsModalOpen(true);
+
+        // Hide modal and navigate after a delay
         setTimeout(() => {
+          setIsModalOpen(false);
           navigate('/');
-        }, 2000);
+        }, 3000); // Modal will disappear after 3 seconds
       } else if (data.message === 'Username is taken') {
         setUsernameError('Username is already taken.');
       } else {
@@ -140,6 +145,16 @@ const Signup = () => {
             <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
           </div>
         </footer>
+
+        {/* Modal for successful signup */}
+        {isModalOpen && (
+          <div className="modal">
+            <div className="modal_content">
+              <h3 className='modal_title'>Signup Successful!</h3>
+              <p className='modal_phrase'>Welcome, <strong>{username}!</strong> Redirecting to the homepage...</p>
+            </div>
+          </div>
+        )}
 
       </div>
     </div>

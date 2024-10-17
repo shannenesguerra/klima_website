@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>KLIMA</title>
-    <link rel="shortcut icon" href="TemplateData/logo.png">
+    <title>Unity WebGL Player | Klima</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop" style="height: 100%; width: 100%; overflow: hidden;">
-      <canvas id="unity-canvas" width=auto height=auto tabindex="-1"></canvas>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -57,11 +57,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/KLIMA 2.5.loader.js";
+      var loaderUrl = buildUrl + "/Klima 2.0.loader.js";
       var config = {
-        dataUrl: buildUrl + "/KLIMA 2.5.data.unityweb",
-        frameworkUrl: buildUrl + "/KLIMA 2.5.framework.js.unityweb",
-        codeUrl: buildUrl + "/KLIMA 2.5.wasm.unityweb",
+        dataUrl: buildUrl + "/Klima 2.0.data",
+        frameworkUrl: buildUrl + "/Klima 2.0.framework.js",
+        codeUrl: buildUrl + "/Klima 2.0.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "ReRend",
         productName: "Klima",
@@ -94,8 +94,8 @@
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
       }
 
       loadingBar.style.display = "block";

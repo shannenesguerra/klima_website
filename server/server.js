@@ -174,7 +174,6 @@ app.post('/api/change-password', async (req, res) => {
   }
 });
 
-
 // Update Send OTP route to store OTP
 app.post('/api/send-otp', async (req, res) => {
   const { email } = req.body;
@@ -206,6 +205,15 @@ app.post('/api/send-otp', async (req, res) => {
     res.status(500).json({ message: 'Failed to send OTP' });
   }
 });
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Build/index.html'));
+});
+
+const path = require('path');
+
+// Serve the WebGL build folder as static files
+app.use(express.static(path.join(__dirname, 'Build')));
 
 
 app.listen(port, () => {

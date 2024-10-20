@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import klimalogo from '../img/klima logo.png';
 import klimatxt from '../img/klima text.png';
 import rerend from '../img/rerend logo.png';
+import gp from '../img/gp logo.png';
 import '../css/signup.css';
 
 const Signup = () => {
@@ -122,8 +123,8 @@ const Signup = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
-
-                  {usernameError && <p className="error_text">{usernameError}</p>} {/* Display error */}
+                  {/* Display error */}
+                  {usernameError && <p className="error_text">{usernameError}</p>} 
                   {passwordError && <p className="error_text">{passwordError}</p>}
                   {confirmPasswordError && <p className="error_text">{confirmPasswordError}</p>}
 
@@ -141,8 +142,9 @@ const Signup = () => {
             <p className="footer_copy">
               &#169; KLIMA 2024 | All rights reserved.
             </p>
+            <img src={gp} alt="Bottom Left" className=" bottom_left" />
             <img src={rerend} alt="Bottom Left" className=" bottom_left" />
-            <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
+            <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />            
           </div>
         </footer>
 
@@ -151,7 +153,7 @@ const Signup = () => {
           <div className="modal">
             <div className="modal_content">
               <h3 className='modal_title'>Signup Successful!</h3>
-              <p className='modal_phrase'>Welcome, <strong>{username}!</strong> Redirecting to the homepage...</p>
+              <p className='modal_phrase'>Welcome, <strong>{username}!</strong> Redirecting to the log in page...</p>
             </div>
           </div>
         )}

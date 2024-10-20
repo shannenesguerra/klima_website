@@ -4,18 +4,19 @@ import arrow from '../img/arrow.png';
 import klimalogo from '../img/klima logo.png';
 import klimatxt from '../img/klima text.png';
 import rerend from '../img/rerend logo.png';
+import gp from '../img/gp logo.png';
 import '../css/login.css';
 
 const Login = () => {
   const [emailOrUsername, setEmailOrUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(''); // Error state
+  const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    setError(''); // Clear any previous errors
+    setError('');
 
     try {
       const response = await fetch('http://localhost:5000/api/login', {
@@ -27,36 +28,35 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        if (data.username) {
-          localStorage.setItem('username', data.username);
+        if (data.token) {
+          // Store the token in sessionStorage
+          sessionStorage.setItem('token', data.token);
+          // Optionally store the username or other info if needed
+          sessionStorage.setItem('username', data.username);
 
-          // Delay before redirecting to the account page
+          // Redirect to the desired page
           setTimeout(() => {
             setIsLoading(false);
-            window.location.href = '/game'; // Redirect to Account page after delay
-          }, 5000); // 5 seconds delay
+            window.location.href = '/game'; 
+          }, 1000);
         } else {
-          console.error('Username not found in response.');
-          setError('Username not found. Please check your credentials.');
-          setIsLoading(false); // Hide loading screen if username is not found
+          setError('Invalid credentials or token not found.');
+          setIsLoading(false);
         }
       } else {
-        console.error(data.message);
         setError('Login failed. Please check your credentials.');
-        setIsLoading(false); // Hide loading screen if response is not okay
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('Error:', error);
       setError('An unexpected error occurred. Please try again later.');
-      setIsLoading(false); // Hide loading screen on error
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="background_login">
-
       <img src={klimatxt} alt="Top Left" className="corner_img top_left" />
-
       {isLoading ? (
         <div className='loading_container'>
           <div className="loading_screen">
@@ -65,11 +65,7 @@ const Login = () => {
         </div>
       ) : (
         <div className="login">
-          <header className="header" id="header">
-            <div className="logo_img">
-              {/* <img src="#" alt="Logo" /> */}
-            </div>
-          </header>
+          <header className="header" id="header"></header>
           <main className="main">
             <section className="login section" id="login">
               <div className="login_container">
@@ -90,13 +86,10 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-
                   <p className="forgotpass_btn"><a href="/forgotpass">FORGOT PASSWORD</a></p>
-
                   <button type="submit" className="loginbtn">
                     <img src={arrow} alt="Arrow" />
                   </button>
-                  
                   <p className="signup_btn"><a href="/signup">CREATE ACCOUNT</a></p>
                 </form>
                 {error && (
@@ -112,13 +105,10 @@ const Login = () => {
           </main>
           <footer className="footer">
             <div className="footer_container">
-              <p className="footer_copy">
-                &#169; KLIMA 2024 | All rights reserved.
-              </p>
-              {/* logos */}
-              <img src={rerend} alt="Bottom Left" className=" bottom_left" />
+              <p className="footer_copy">&#169; KLIMA 2024 | All rights reserved.</p>
+              <img src={gp} alt="Bottom Left" className=" bottom_left" />
+              <img src={rerend} alt="Bottom Left" className=" bottom_mid" />
               <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
-
             </div>
           </footer>
         </div>

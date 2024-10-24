@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import klimalogo from '../img/klima logo.png';
 import klimatxt from '../img/klima text.png';
 import rerend from '../img/rerend logo.png';
+import gp from '../img/gp logo.png';
 import '../css/changepass.css';
 
 const ChangePassword = () => {
@@ -107,7 +108,8 @@ const ChangePassword = () => {
                         &#169; KLIMA 2024 | All rights reserved.
                     </p>
                     {/* logos */}
-                    <img src={rerend} alt="Bottom Left" className=" bottom_left" />
+                    <img src={gp} alt="Bottom Left" className=" bottom_left" />
+                    <img src={rerend} alt="Bottom Left" className=" bottom_mid" />
                     <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
                     
                 </div>

@@ -6,7 +6,7 @@ import rerend from '../img/rerend logo.png';
 import gp from '../img/gp logo.png';
 import '../css/forgotpass.css';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ setIsAuthenticated }) => { // Accept setIsAuthenticated as a prop
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('');
     const [otp, setOtp] = useState(new Array(6).fill(''));
@@ -79,6 +79,7 @@ const ForgotPassword = () => {
             const data = await response.json();
 
             if (response.ok) {
+                setIsAuthenticated(true); // Set authentication state to true
                 setModalOpen(true);
                 setError('');
             } else {
@@ -163,7 +164,6 @@ const ForgotPassword = () => {
                     <img src={gp} alt="Bottom Left" className=" bottom_left" />
                     <img src={rerend} alt="Bottom Left" className=" bottom_mid" />
                     <img src={klimalogo} alt="Bottom Right" className=" bottom_right" />
-
                 </div>
             </footer>
         </div>
